@@ -20,10 +20,10 @@ setTimeout(function(){
 
 
 
-//sostituzione <p></p> con gli <input>
+//inserimento degli input dentro le <p></p>
 setTimeout(function(){
 for (let i = 0; i < pEl.length; i++) {
-        
+        //creazione degli input per quante sono le <p>
         let inputEl = document.createElement('input')
         inputEl.type = "number";
         inputEl.placeholder = "Inserisci il numero"
