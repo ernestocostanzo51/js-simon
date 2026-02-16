@@ -3,14 +3,17 @@ const pEl = document.querySelectorAll("p")
 const h1El = document.querySelector("h1")
 const buttonEl = document.querySelector("button")
 //generazione 5 numeri all'interno delle <p><//p>
-
+let numeriDaIndovinare =[]
 setTimeout(function(){
 
     for( let i=0; i<5; i++){
-    num_random = Math.floor(Math.random()*100)
+        
+    let num_random = Math.floor(Math.random()*100)
+    
+
     pEl[i].textContent = num_random
     h1El.textContent = "Ecco i numeri! Memorizzali"
-
+    numeriDaIndovinare.push(num_random)
 }
 
 },5000)
@@ -19,22 +22,51 @@ setTimeout(function(){
 
 //sostituzione <p></p> con gli <input>
 setTimeout(function(){
-
 for (let i = 0; i < pEl.length; i++) {
         
-        let input = document.createElement('input')
-        input.type = "number";
-        input.placeholder = "Inserisci il numero"
+        let inputEl = document.createElement('input')
+        inputEl.type = "number";
+        inputEl.placeholder = "Inserisci il numero"
 
         pEl[i].textContent = ""; 
-        pEl[i].appendChild(input)
-        h1El.textContent = "Inserisci i numeri!"
+        pEl[i].appendChild(inputEl)
+        h1El.textContent = "Inserisci i numeri hai 30 secondi di tempo"
     }
 }, 10000)
 
 setTimeout(function(){
     buttonEl.disabled=false
 },11000)
+
+
+formEl.addEventListener('submit', function(e){
+e.preventDefault()
+
+const inputs = document.querySelectorAll("input")
+
+let numeri_indoviati = 0
+
+for(let i=0; i<inputs.length; i++){
+    if(parseInt(inputs[i].value) === numeriDaIndovinare[i]){
+        numeri_indoviati++
+    }
+        
+}
+
+h1El.textContent = "Hai indovinato " + numeri_indoviati + " su 5"
+
+})
+
+setTimeout(function(){
+    buttonEl.disabled=true
+    h1El.textContent ="TEMPO SCADUTO"
+    inputEl.disabled=true
+}, 40000)
+    
+
+
+    
+
 
 
 
